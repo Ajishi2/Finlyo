@@ -3,6 +3,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import { LayoutDashboard, FileText, BarChart3, Users, LogOut, Sun, Moon } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
+import { useAuth } from "@/context/AuthContext";
+import { useCanViewUsers } from "@/hooks/useRolePermissions";
 import ghostImg from "../../../assets/ghost.png";
 
 interface DashboardLayoutProps {
@@ -31,6 +33,7 @@ function getGreeting() {
 export function DashboardLayout({ pageTitle, userName, userRole, onLogout, children, showGhost = false }: DashboardLayoutProps) {
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
+  const canViewUsers = useCanViewUsers();
 
   return (
     <div className="flex min-h-screen gradient-bg bg-background">
@@ -57,6 +60,12 @@ export function DashboardLayout({ pageTitle, userName, userRole, onLogout, child
         <nav className="flex-1 flex flex-col items-center gap-2 py-4 px-2">
           {navItems.map((item) => {
             const active = location.pathname === item.to;
+            
+            // Hide Users link for non-admin users
+            if (item.to === "/users" && !canViewUsers) {
+              return null;
+            }
+            
             return (
               <NavLink key={item.to} to={item.to} className="group relative">
                 <motion.div
