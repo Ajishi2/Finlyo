@@ -1,6 +1,22 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
+  "version": 2,
+  "name": "finlyo",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "methods": ["GET", "HEAD", "OPTIONS"]
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -43,5 +59,8 @@
         }
       ]
     }
-  ]
+  ],
+  "env": {
+    "VITE_API_BASE_URL": "https://finlyo.onrender.com/api"
+  }
 }
