@@ -32,9 +32,9 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/login" element={<LoginRoute />} />
-              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-              <Route path="/records" element={<ProtectedRoute><Records /></ProtectedRoute>} />
-              <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+              <Route path="/dashboard" element={<ProtectedRoute allowedRoles={['ADMIN', 'ANALYST', 'VIEWER']}><Dashboard /></ProtectedRoute>} />
+              <Route path="/records" element={<ProtectedRoute allowedRoles={['ADMIN', 'ANALYST', 'VIEWER']}><Records /></ProtectedRoute>} />
+              <Route path="/analytics" element={<ProtectedRoute allowedRoles={['ADMIN', 'ANALYST', 'VIEWER']}><Analytics /></ProtectedRoute>} />
               <Route path="/users" element={<ProtectedRoute allowedRoles={['ADMIN']}><Users /></ProtectedRoute>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
