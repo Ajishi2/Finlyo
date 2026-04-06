@@ -1,317 +1,251 @@
-# Financial Dashboard
+# Finlyo - Financial Analytics Platform
 
-A full-stack financial management application with user authentication, role-based access control, and comprehensive audit logging.
+A comprehensive, enterprise-grade financial management system built with modern technologies and best practices. This platform demonstrates advanced software engineering concepts including role-based access control, JWT authentication, data visualization, and comprehensive CRUD operations.
 
-## 🚀 Features
+## 🚀 **Key Features & Implementations**
 
-### User Management
-- **Role-Based Access Control**: Admin, Analyst, Viewer roles
-- **User CRUD Operations**: Create, Read, Update, Delete users
-- **Status Management**: Active/Inactive user status
-- **Password Reset**: Admin password reset functionality
-- **Audit Logging**: Complete audit trail for all admin operations
+### 🔐 **Advanced Security & Authentication**
+- **JWT Token-Based Authentication** with automatic token refresh and validation
+- **Role-Based Access Control (RBAC)** with three hierarchical roles:
+  - **VIEWER**: Read-only access to dashboard and analytics
+  - **ANALYST**: Full record management (create, edit own records)
+  - **ADMIN**: Complete system control including user management
+- **BCrypt Password Hashing** for secure credential storage
+- **Spring Security Integration** with method-level security annotations
+- **Automatic Token Injection** via Axios interceptors
+- **Session Management** with automatic logout on token expiry
 
-### Financial Records
-- **Income & Expense Tracking**: Add, edit, delete financial records
-- **Category Management**: Organize transactions by categories
-- **Date Range Filtering**: Filter records by date periods
-- **Search & Filter**: Advanced search capabilities
-- **Dashboard Analytics**: Real-time financial insights
+### 📊 **Advanced Data Visualization & Analytics**
+- **Interactive Dashboard** with real-time financial metrics
+- **Multi-Chart Analytics** using Recharts library:
+  - Income vs Expense trend analysis
+  - Category-wise spending distribution
+  - Monthly financial performance charts
+  - Net worth tracking with animated counters
+- **Financial Health Score** calculation based on spending patterns
+- **Spending Insights** with AI-powered recommendations
+- **Responsive Charts** with mobile-optimized display
+- **Date Range Filtering** for custom analysis periods
 
-### Security
-- **JWT Authentication**: Secure token-based authentication
-- **Role-Based Permissions**: Granular access control
-- **CORS Configuration**: Cross-origin resource sharing
-- **Input Validation**: Comprehensive data validation
+### 💾 **Data Management Features**
+- **Advanced CSV Import/Export System**:
+  - Bulk data import with validation (up to 500 records)
+  - Real-time import progress tracking
+  - Error reporting with detailed validation messages
+  - CSV format validation and data sanitization
+  - Export filtered data with custom date ranges
+- **Comprehensive CRUD Operations**:
+  - Create, Read, Update, Delete financial records
+  - Soft delete implementation for data integrity
+  - Audit logging for all administrative actions
+  - Pagination and advanced filtering
+- **Smart Search & Filtering**:
+  - Multi-parameter filtering (date, category, type, amount)
+  - Real-time search across descriptions
+  - Sortable columns with visual indicators
+  - Filter persistence across sessions
 
-## 🛠 Tech Stack
+### 🎨 **Modern UI/UX Design**
+- **Dark/Light Theme Support** with system preference detection
+- **Glass-morphism Design** with modern aesthetics
+- **Framer Motion Animations**:
+  - Smooth page transitions
+  - Interactive hover states
+  - Loading skeletons and micro-interactions
+  - Animated counters and progress indicators
+- **Responsive Design** optimized for all device sizes
+- **Custom Component Library** using ShadCN/UI
+- **Accessibility Features** including ARIA labels and keyboard navigation
 
-### Backend
-- **Spring Boot 3.1.5**: Java framework
-- **Spring Security**: Authentication & authorization
-- **Spring Data JPA**: Database operations
-- **PostgreSQL**: Primary database (Supabase)
-- **Hibernate**: ORM framework
-- **JWT**: JSON Web Tokens
-- **Maven**: Build tool
+### 👥 **User Management System**
+- **Complete User Lifecycle Management**:
+  - User creation with role assignment
+  - Profile management and editing
+  - Status management (Active/Inactive)
+  - Password reset functionality
+- **Advanced Permission System**:
+  - Frontend route protection
+  - Backend API security layers
+  - Component-level permission checks
+  - Real-time permission validation
+- **Audit Trail** for all administrative actions
 
-### Frontend
-- **React 18**: UI framework
-- **TypeScript**: Type-safe JavaScript
-- **Vite**: Build tool & dev server
-- **TailwindCSS**: Utility-first CSS
-- **Framer Motion**: Animations
-- **React Query**: Data fetching & caching
-- **Lucide React**: Icon library
+### 🏗️ **Technical Architecture**
 
-### Database
-- **Supabase**: Hosted PostgreSQL
-- **Row Level Security**: Data access control
-- **Automatic Timestamps**: Created/updated tracking
+#### **Backend (Spring Boot)**
+- **Layered Architecture**: Controller → Service → Repository pattern
+- **JPA/Hibernate ORM** with optimized entity relationships
+- **Database Indexing** for performance optimization
+- **DTO Pattern** for secure data transfer
+- **Custom Exception Handling** with global error responses
+- **Validation Framework** using Jakarta Bean Validation
+- **RESTful API Design** with proper HTTP status codes
 
-## 📁 Project Structure
+#### **Frontend (React + TypeScript)**
+- **Component-Based Architecture** with reusable UI components
+- **State Management** using React Query for server state
+- **TypeScript Implementation** for type safety
+- **Custom Hooks** for business logic abstraction
+- **Route Protection** with role-based navigation guards
+- **Optimistic Updates** for enhanced user experience
 
-```
-financial/
-├── backend/
-│   ├── src/main/java/com/finance/
-│   │   ├── config/          # Security & web configuration
-│   │   ├── controller/      # REST API endpoints
-│   │   ├── dto/           # Data transfer objects
-│   │   ├── entity/         # Database entities
-│   │   ├── exception/      # Custom exceptions
-│   │   ├── repository/     # Data access layer
-│   │   ├── security/       # Security components
-│   │   └── service/       # Business logic
-│   ├── src/main/resources/
-│   │   └── application.properties
-│   └── sql/              # Database schema
-├── frontend/
-│   ├── src/
-│   │   ├── api/           # API service functions
-│   │   ├── components/     # Reusable UI components
-│   │   ├── context/       # React contexts
-│   │   ├── hooks/         # Custom React hooks
-│   │   ├── pages/         # Page components
-│   │   └── utils/         # Utility functions
-│   └── public/           # Static assets
-└── docs/                 # Documentation
-```
+#### **Database Design**
+- **Normalized Schema** with foreign key constraints
+- **Audit Fields** (created_at, updated_at) with automatic triggers
+- **Soft Delete Implementation** for data recovery
+- **Comprehensive Indexing Strategy** for query optimization
+- **Enum Types** for data consistency
 
-## 🚀 Quick Start
+### 🔧 **Advanced Features**
 
-### Prerequisites
-- **Java 21+**: Backend runtime
-- **Node.js 18+**: Frontend runtime
-- **Maven 3.9+**: Java build tool
-- **Supabase Account**: Database hosting
+#### **Toggle Switch Implementation**
+- **Animated Status Toggles** for user activation/deactivation
+- **Smooth Transitions** with visual feedback
+- **Permission-Based Controls** (users can't modify own status)
+- **Real-time Updates** without page refresh
 
-### Backend Setup
+#### **Smart Action Buttons**
+- **Always-Visible Controls** with subtle grey state
+- **Hover-Activated Colors** for better UX
+- **Permission-Based Rendering** (edit/delete based on roles)
+- **Confirmation Dialogs** for destructive actions
 
-1. **Clone Repository**
-   ```bash
-   git clone <repository-url>
-   cd financial/backend
-   ```
+#### **Import/Export System**
+- **CSV Parser** with flexible column mapping
+- **Data Validation** with comprehensive error reporting
+- **Progress Tracking** with visual indicators
+- **Batch Processing** for performance optimization
 
-2. **Configure Database**
-   ```bash
-   # Copy environment template
-   cp .env.example .env
-   
-   # Update with your Supabase credentials
-   DATABASE_URL=postgresql://postgres:password@your-project.supabase.co:5432/postgres
-   ```
+## 🛠️ **Technology Stack**
 
-3. **Run Application**
-   ```bash
-   mvn spring-boot:run
-   ```
+### **Backend Technologies**
+- **Java 17** with Spring Boot 3.x
+- **Spring Security 6.x** for authentication
+- **Spring Data JPA** for database operations
+- **PostgreSQL** as primary database
+- **JWT (JSON Web Tokens)** for stateless authentication
+- **Maven** for dependency management
+- **Jakarta Bean Validation** for input validation
 
-   Backend runs on: `http://localhost:8080`
+### **Frontend Technologies**
+- **React 18** with TypeScript
+- **Vite** for fast development and building
+- **Tailwind CSS** for styling
+- **Framer Motion** for animations
+- **Recharts** for data visualization
+- **React Query** for server state management
+- **React Router** for navigation
+- **Axios** for HTTP client
+- **ShadCN/UI** component library
 
-### Frontend Setup
+### **Development Tools**
+- **ESLint** for code quality
+- **PostCSS** for CSS processing
+- **Git** for version control
+- **Docker** support for containerization
 
-1. **Install Dependencies**
-   ```bash
-   cd financial/frontend
-   npm install
-   ```
+## 📋 **API Endpoints**
 
-2. **Configure API URL**
-   ```bash
-   # Update .env file
-   VITE_API_BASE_URL=http://localhost:8080/api
-   ```
+### **Authentication**
+- `POST /api/auth/login` - User authentication
+- `POST /api/auth/generate-hash` - Password hash generation
 
-3. **Run Development Server**
-   ```bash
-   npm run dev
-   ```
+### **Dashboard & Analytics**
+- `GET /api/v1/dashboard/summary` - Overall financial summary
+- `GET /api/v1/dashboard/category` - Category-wise breakdown
+- `GET /api/v1/dashboard/trends` - Trend analysis data
 
-   Frontend runs on: `http://localhost:5173`
+### **Financial Records**
+- `GET /api/v1/records` - Paginated records with filtering
+- `POST /api/v1/records` - Create new record
+- `PUT /api/v1/records/{id}` - Update existing record
+- `DELETE /api/v1/records/{id}` - Delete record (soft delete)
 
-## 🔧 Configuration
-
-### Environment Variables
-
-#### Backend (.env)
-```env
-# Database
-DATABASE_URL=postgresql://postgres:password@project.supabase.co:5432/postgres
-
-# Server
-SERVER_PORT=8080
-SERVER_CONTEXT_PATH=/
-
-# CORS
-CORS_ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000
-```
-
-#### Frontend (.env)
-```env
-# API Configuration
-VITE_API_BASE_URL=http://localhost:8080/api
-```
-
-## 📊 API Endpoints
-
-### Authentication
-- `POST /api/v1/auth/login` - User login
-- `POST /api/v1/auth/register` - User registration
-
-### Users (Admin Only)
-- `GET /api/v1/users` - List users (paginated)
-- `POST /api/v1/users` - Create user
-- `GET /api/v1/users/{id}` - Get user by ID
-- `PUT /api/v1/users/{id}` - Update user
-- `PATCH /api/v1/users/{id}/role` - Update user role
+### **User Management**
+- `GET /api/v1/users` - List all users (Admin only)
+- `POST /api/v1/users` - Create new user (Admin only)
+- `PUT /api/v1/users/{id}` - Update user details
+- `PATCH /api/v1/users/{id}/role` - Change user role
 - `PATCH /api/v1/users/{id}/status` - Update user status
-- `PATCH /api/v1/users/{id}/password` - Reset user password
 - `DELETE /api/v1/users/{id}` - Soft delete user
 
-### Financial Records
-- `GET /api/v1/records` - List records (filtered)
-- `POST /api/v1/records` - Create record
-- `PUT /api/v1/records/{id}` - Update record
-- `DELETE /api/v1/records/{id}` - Delete record
+## 🎯 **Assignment Highlights**
 
-### Dashboard
-- `GET /api/v1/dashboard/stats` - Get dashboard statistics
+### **Advanced Concepts Demonstrated**
+1. **Enterprise Security Architecture** with multi-layer authentication
+2. **Role-Based Authorization** with granular permissions
+3. **Advanced Data Visualization** with interactive charts
+4. **Modern Frontend Architecture** with TypeScript and hooks
+5. **RESTful API Design** with proper HTTP semantics
+6. **Database Optimization** with indexing and relationships
+7. **User Experience Design** with animations and micro-interactions
+8. **Data Import/Export** with validation and error handling
+9. **Responsive Design** for cross-device compatibility
+10. **Code Quality** with TypeScript and linting
 
-## 🛡️ Security
+### **Technical Excellence**
+- **Clean Code Principles** with separation of concerns
+- **Error Handling** with global exception management
+- **Performance Optimization** with lazy loading and caching
+- **Security Best Practices** with input validation and sanitization
+- **Testing-Ready Architecture** with modular design
+- **Scalable Design** with microservice-ready structure
 
-### Authentication Flow
-1. User logs in with email/password
-2. Server validates credentials
-3. JWT token returned to client
-4. Token stored in localStorage
-5. Subsequent requests include `Authorization: Bearer <token>`
+## 🚀 **Getting Started**
 
-### Role-Based Access
-- **ADMIN**: Full access to all features
-- **ANALYST**: Can view and create financial records
-- **VIEWER**: Read-only access to financial records
+### **Prerequisites**
+- Node.js 18+
+- Java 17+
+- PostgreSQL 12+
+- Maven 3.8+
 
-### Audit Logging
-All admin operations are logged with:
-- **Timestamp**: When operation occurred
-- **User**: Who performed the operation
-- **Action**: What was performed
-- **Target**: Which user/record was affected
-
-## 📝 Database Schema
-
-### Users Table
-```sql
-CREATE TABLE users (
-    id BIGSERIAL PRIMARY KEY,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(20) NOT NULL DEFAULT 'VIEWER',
-    status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-### Financial Records Table
-```sql
-CREATE TABLE financial_records (
-    id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT REFERENCES users(id),
-    amount DECIMAL(10,2) NOT NULL,
-    type VARCHAR(10) NOT NULL CHECK (type IN ('INCOME', 'EXPENSE')),
-    category VARCHAR(100) NOT NULL,
-    description TEXT,
-    record_date DATE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    deleted BOOLEAN DEFAULT FALSE
-);
-```
-
-## 🧪 Testing
-
-### Running Tests
+### **Installation**
 ```bash
-# Backend tests
-cd backend
-mvn test
+# Clone the repository
+git clone <repository-url>
+cd Finlyo
 
-# Frontend tests
+# Frontend Setup
 cd frontend
-npm test
+npm install
+npm run dev
+
+# Backend Setup
+cd backend
+mvn clean install
+mvn spring-boot:run
 ```
 
-### API Testing
-Use the provided test endpoints:
-- `GET /api/v1/users/health` - Health check (public)
-- `GET /api/v1/test` - Test endpoint (public)
-
-## 🚀 Deployment
-
-### Production Considerations
-- **Environment Variables**: Use production database URLs
-- **HTTPS**: Configure SSL certificates
-- **Database Security**: Enable Row Level Security in Supabase
-- **Password Hashing**: Implement BCrypt password hashing
-- **CORS**: Update allowed origins for production domains
-
-### Docker Deployment
+### **Database Setup**
 ```bash
-# Build images
-docker-compose build
+# Create database
+createdb finlyo
 
-# Run containers
-docker-compose up -d
+# Run schema migration
+psql -d finlyo -f backend/sql/supabase-schema.sql
 ```
 
-## 🤝 Contributing
+### **Environment Configuration**
+```bash
+# Frontend (.env)
+VITE_API_BASE_URL=http://localhost:8080/api
 
-1. Fork the repository
-2. Create feature branch
-3. Make changes
-4. Add tests
-5. Submit pull request
+# Backend (application.properties)
+spring.datasource.url=jdbc:postgresql://localhost:5432/finlyo
+JWT_SECRET=your-secret-key
+```
 
-## 📄 License
+## 📊 **Default Users**
+- **Admin**: `admin@finance.com` / `admin123`
+- **Analyst**: `analyst@finance.com` / `admin123`
+- **Viewer**: `viewer@finance.com` / `admin123`
 
-This project is licensed under the MIT License.
+## 🎨 **Screenshots & Demos**
+*(Include screenshots of key features here)*
 
-## 🆘 Troubleshooting
-
-### Common Issues
-
-#### Database Connection Issues
-- **Check**: DATABASE_URL environment variable
-- **Verify**: Supabase credentials are correct
-- **Test**: Direct database connection with psql
-
-#### CORS Errors
-- **Check**: Frontend API_BASE_URL matches backend
-- **Verify**: CORS configuration in SecurityConfig
-- **Test**: Network requests in browser dev tools
-
-#### Authentication Issues
-- **Check**: JWT token in localStorage
-- **Verify**: Authorization header in requests
-- **Test**: Token expiration handling
-
-#### Build Issues
-- **Backend**: `mvn clean install`
-- **Frontend**: `npm install` and `npm run build`
-
-## 📞 Support
-
-For issues and questions:
-1. Check this README
-2. Review the troubleshooting section
-3. Check existing GitHub issues
-4. Create new issue with detailed description
+## 🤝 **Contributing**
+This project demonstrates enterprise software development best practices and serves as a comprehensive example of modern full-stack development.
 
 ---
 
-**Built with ❤️ using Spring Boot and React**
+**Finlyo** - Where Financial Data Meets Modern Technology 🚀
