@@ -327,7 +327,7 @@ export default function UsersPage() {
                         </td>
                         <td className="py-4 px-6 text-sm text-muted-foreground">{formatDate(u.createdAt)}</td>
                         <td className="py-4 px-6">
-                          <motion.button onClick={() => handleEditUser(u)} className="p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-muted-foreground hover:text-primary"
+                          <motion.button onClick={() => handleEditUser(u)} className="p-2 rounded-lg opacity-50 transition-opacity duration-200 text-muted-foreground hover:text-primary hover:opacity-100"
                             whileHover={{ scale: 1.15 }}>
                             <Edit2 size={14} />
                           </motion.button>

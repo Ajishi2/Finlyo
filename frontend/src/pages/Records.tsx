@@ -518,7 +518,7 @@ export default function Records() {
                         <td className="px-6 py-4 text-sm text-foreground text-right font-bold tabular-nums">{formatAmount(record.amount)}</td>
                         <td className="px-6 py-4 text-sm text-muted-foreground">{record.description || '-'}</td>
                         <td className="px-6 py-4">
-                          <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                          <div className="flex items-center gap-2 opacity-50 transition-opacity duration-200 hover:opacity-100">
                             {useCanEditRecord(record.userId) && (
                               <motion.button onClick={() => openEditModal(record)} className="p-2 rounded-lg text-muted-foreground hover:text-primary transition-colors"
                                 whileHover={{ scale: 1.15 }}>

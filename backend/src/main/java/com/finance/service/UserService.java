@@ -16,6 +16,7 @@ import com.finance.security.SecurityContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,10 +28,12 @@ import java.util.stream.Collectors;
 public class UserService {
     private final UserRepository userRepository;
     private final SecurityContextHolder securityContextHolder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepository, SecurityContextHolder securityContextHolder) {
         this.userRepository = userRepository;
         this.securityContextHolder = securityContextHolder;
+        this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     /**
@@ -49,7 +52,7 @@ public class UserService {
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
-                .password(request.getPassword()) // In production, should be hashed
+                .password(passwordEncoder.encode(request.getPassword())) // Hash the password
                 .role(request.getRole() != null ? request.getRole() : Role.VIEWER)
                 .status(UserStatus.ACTIVE)
                 .build();
@@ -220,7 +223,7 @@ public class UserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User with ID " + userId + " not found"));
 
-        user.setPassword(newPassword); // In production, should be hashed
+        user.setPassword(passwordEncoder.encode(newPassword)); // Hash the new password
         user = userRepository.save(user);
         
         // Get current user for audit
